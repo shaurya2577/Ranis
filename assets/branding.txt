@@ -1,0 +1,407 @@
+========================================
+RANI'S CALIFORNIA - BRAND STYLE GUIDE
+========================================
+
+═══════════════════════════════════════
+COLOR PALETTE
+═══════════════════════════════════════
+
+PRIMARY COLORS
+--------------
+Warm Cream     #F7F5F1    RGB(247, 245, 241)    Background, neutrals
+Deep Indigo    #233247    RGB(35, 50, 71)       Headers, primary text, buttons
+Marigold       #E48B1F    RGB(228, 139, 31)     Accent, CTAs, highlights
+Olive/Teal     #6B8A72    RGB(107, 138, 114)    Secondary accents, muted elements
+Charcoal       #2B2B2B    RGB(43, 43, 43)       Body text, dark elements
+
+USAGE GUIDELINES
+----------------
+- Background: Always use Warm Cream (#F7F5F1) for main backgrounds
+- Text Hierarchy:
+  • Headings: Deep Indigo (#233247)
+  • Body: Charcoal (#2B2B2B)
+  • Secondary/Meta: Olive (#6B8A72)
+- Accents: Use Marigold (#E48B1F) sparingly for emphasis, CTAs, badges
+- Contrast: All text/background combinations meet WCAG 2.1 AA (4.5:1 minimum)
+
+COLOR COMBINATIONS
+------------------
+• Primary Button: Deep Indigo bg + Warm Cream text
+• Secondary Button: Olive bg + Warm Cream text
+• Accent Button: Marigold bg + Warm Cream text
+• Links: Deep Indigo, hover to Marigold
+• Badges/Tags: Marigold bg + Warm Cream text
+
+═══════════════════════════════════════
+TYPOGRAPHY
+═══════════════════════════════════════
+
+PRIMARY FONTS
+-------------
+Headings: Playfair Display (Weight: 700)
+Body:     Inter (Weights: 400, 600)
+
+GOOGLE FONTS IMPORT
+-------------------
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap');
+
+CSS VARIABLES
+-------------
+--font-heading: 'Playfair Display', Georgia, serif;
+--font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+FONT SIZES (Mobile-First)
+--------------------------
+--font-size-xs: 0.75rem      (12px)  - Small labels, badges
+--font-size-sm: 0.875rem     (14px)  - Meta text, captions
+--font-size-base: 1rem       (16px)  - Body text
+--font-size-lg: 1.125rem     (18px)  - Large body, intro text
+--font-size-xl: 1.25rem      (20px)  - H5, subheadings
+--font-size-2xl: 1.5rem      (24px)  - H3
+--font-size-3xl: 2rem        (32px)  - H2
+--font-size-4xl: 2.5rem      (40px)  - H1 (mobile)
+--font-size-5xl: 3rem        (48px)  - H1 (desktop)
+
+HIERARCHY
+---------
+H1: Playfair Display 700, 2.5rem (mobile) / 3rem (desktop)
+H2: Playfair Display 700, 2rem
+H3: Playfair Display 700, 1.5rem
+H4: Playfair Display 700, 1.25rem
+H5: Playfair Display 700, 1.125rem
+H6: Playfair Display 700, 1rem
+
+Body: Inter 400, 1rem, line-height 1.6
+Bold/Emphasis: Inter 600
+
+USAGE GUIDELINES
+----------------
+- Use Playfair Display exclusively for headlines and section titles
+- Use Inter for all body text, UI elements, buttons, forms
+- Never use decorative fonts for body text or lengthy content
+- Line height: 1.2 for headings, 1.6–1.8 for body text
+- Letter spacing: Normal for body, +0.5px for uppercase labels
+
+═══════════════════════════════════════
+LOGO GUIDELINES
+═══════════════════════════════════════
+
+PRIMARY LOGO
+------------
+Text: "Rani's"
+Font: Playfair Display 700
+Color: Deep Indigo (#233247)
+Size: Minimum 24px height
+
+SAFE AREA
+---------
+Maintain clear space equal to the height of the letter "R" on all sides
+
+MONOCHROME VERSIONS
+--------------------
+- On Light Backgrounds: Deep Indigo (#233247)
+- On Dark Backgrounds: Warm Cream (#F7F5F1)
+- Single Color Print: Black or Deep Indigo
+
+MINIMUM SIZE
+------------
+Digital: 32px height
+Print: 0.5 inch height
+
+DO NOT
+------
+✗ Stretch or distort the logo
+✗ Add effects (drop shadow, gradient, outline)
+✗ Place on busy or low-contrast backgrounds
+✗ Use colors outside the approved palette
+✗ Add taglines or additional text
+
+FAVICON
+-------
+Format: SVG or PNG
+Size: 32x32px minimum
+Style: Stylized "R" in Deep Indigo on Warm Cream background
+
+SVG LOGO TEMPLATE
+-----------------
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <text x="10" y="45" font-family="Playfair Display, serif" font-weight="700" font-size="36" fill="#233247">
+    Rani's
+  </text>
+</svg>
+
+═══════════════════════════════════════
+ICON SET
+═══════════════════════════════════════
+
+REQUIRED ICONS (Minimalist Style)
+----------------------------------
+• cart       - Shopping bag outline
+• search     - Magnifying glass
+• menu       - Hamburger (3 horizontal lines)
+• close      - X or close symbol
+• chevron    - Down arrow / caret
+• heart      - Wishlist / favorites
+• instagram  - Instagram logo
+• user       - User profile outline
+
+ICON SPECIFICATIONS
+-------------------
+Style: Outline/stroke (not filled)
+Stroke width: 2px
+Size: 20x20px or 24x24px
+Color: Inherits from parent (currentColor)
+Format: SVG sprite
+
+USAGE
+-----
+- Use outline style for consistency
+- Icons should scale proportionally
+- Maintain 2:1 tap target size for mobile (min 44x44px)
+- Always provide accessible labels (aria-label or sr-only text)
+
+═══════════════════════════════════════
+SPACING & LAYOUT
+═══════════════════════════════════════
+
+SPACING SCALE (8px base)
+------------------------
+--space-xs: 0.5rem     (8px)
+--space-sm: 0.75rem    (12px)
+--space-md: 1rem       (16px)
+--space-lg: 1.5rem     (24px)
+--space-xl: 2rem       (32px)
+--space-2xl: 3rem      (48px)
+--space-3xl: 4rem      (64px)
+--space-4xl: 6rem      (96px)
+
+CONTAINER
+---------
+Max-width: 1280px
+Padding: 1rem (mobile), 2rem (desktop)
+Centered with auto margins
+
+GRID SYSTEMS
+------------
+Product Grid:
+  - Mobile: 1 column
+  - Tablet (640px+): 2 columns
+  - Desktop (1024px+): 3 columns
+  - Gap: 1.5rem–2rem
+
+Collection Grid:
+  - Mobile: 1 column
+  - Tablet: 2 columns
+  - Desktop: 4 columns
+
+BREAKPOINTS
+-----------
+Mobile: Default (< 640px)
+Tablet: 640px
+Desktop: 1024px
+Wide: 1280px
+
+═══════════════════════════════════════
+BUTTONS & UI ELEMENTS
+═══════════════════════════════════════
+
+PRIMARY BUTTON
+--------------
+Background: Deep Indigo (#233247)
+Text: Warm Cream (#F7F5F1)
+Padding: 0.75rem 2rem
+Border-radius: 2px
+Font: Inter 600, 1rem
+Hover: Background → Charcoal (#2B2B2B)
+
+SECONDARY BUTTON (Outline)
+---------------------------
+Background: Transparent
+Text: Deep Indigo (#233247)
+Border: 2px solid Deep Indigo
+Padding: 0.75rem 2rem
+Border-radius: 2px
+Hover: Background → Deep Indigo, Text → Warm Cream
+
+SMALL BUTTON
+------------
+Padding: 0.5rem 1.5rem
+Font-size: 0.875rem
+
+DISABLED STATE
+--------------
+Opacity: 0.5
+Cursor: not-allowed
+
+FOCUS STATE
+-----------
+Outline: 2px solid Marigold (#E48B1F)
+Outline-offset: 2px
+
+═══════════════════════════════════════
+IMAGERY
+═══════════════════════════════════════
+
+PHOTOGRAPHY STYLE
+-----------------
+- Natural lighting preferred
+- Warm, muted tones that complement palette
+- Lifestyle shots showing garments in context
+- Mix of model shots, flatlays, and detail close-ups
+- Authentic workshop/artisan photos welcome
+
+IMAGE SPECIFICATIONS
+--------------------
+Hero Images: 1600–2400px wide, 16:9 or 3:2 aspect ratio
+Product Main: 800–1200px, 4:3 or 1:1 aspect ratio
+Product Thumbnails: 480px, 1:1 aspect ratio
+Social Media OG: 1200x630px
+
+RESPONSIVE IMAGES
+-----------------
+Provide three sizes for all images:
+  - Small: 480px wide (mobile)
+  - Medium: 900px wide (tablet)
+  - Large: 1600px wide (desktop)
+
+Format: JPG for photos, WebP as fallback
+Compression: 75-85% quality
+Alt text: Always required and descriptive
+
+PLACEHOLDER BEHAVIOR
+--------------------
+If image unavailable:
+  - Display textured background (cream with subtle pattern)
+  - Show icon and text: "Made-to-order: request photos"
+
+IMAGE BADGES
+------------
+Use small badges for:
+  - "Artisan / In-studio photo" for raw/authentic images
+  - "Limited Edition" for exclusive pieces
+  - "Made-to-Measure" for custom options
+
+═══════════════════════════════════════
+TONE & VOICE
+═══════════════════════════════════════
+
+BRAND VOICE
+-----------
+Warm, artisanal, boutique-luxe. Clear, evocative, and human. Avoid clichés.
+
+PRINCIPLES
+----------
+✓ Speak with intention - every word matters
+✓ Honor craft without romanticizing
+✓ Be factual and transparent about process
+✓ Acknowledge grandmother Rani's legacy without sentimentality
+✓ Respect the customer's intelligence
+
+AVOID
+-----
+✗ Overused fashion terms ("timeless," "effortless")
+✗ Excessive adjectives and flowery language
+✗ False scarcity or urgency tactics
+✗ Generic sustainability claims without specifics
+
+WRITING EXAMPLES
+----------------
+GOOD: "Hand-loomed cotton with natural indigo dye. Fades beautifully over time."
+BAD: "Absolutely stunning, timeless piece featuring exquisite artisanal craftsmanship."
+
+GOOD: "Takes 4–6 weeks. We'll send progress updates."
+BAD: "Lovingly handcrafted by our amazing artisans using time-honored techniques."
+
+═══════════════════════════════════════
+ACCESSIBILITY REQUIREMENTS
+═══════════════════════════════════════
+
+COLOR CONTRAST
+--------------
+- Body text: Minimum 4.5:1 (WCAG AA)
+- Large text (18px+): Minimum 3:1
+- UI elements: Minimum 3:1
+
+All current color combinations meet or exceed these standards.
+
+KEYBOARD NAVIGATION
+-------------------
+- All interactive elements must be keyboard accessible
+- Tab order follows visual order
+- Focus indicators visible (2px Marigold outline)
+- Skip links provided for main content
+
+SCREEN READERS
+--------------
+- Semantic HTML5 elements (<nav>, <main>, <article>)
+- ARIA labels for icon-only buttons
+- Alt text for all images
+- Form labels properly associated
+
+FORMS
+-----
+- Clear error messages
+- Inline validation
+- Required fields marked
+- Proper input types (email, number, tel)
+
+═══════════════════════════════════════
+FILE NAMING CONVENTIONS
+═══════════════════════════════════════
+
+PRODUCT IMAGES
+--------------
+Format: product_<ID>_<variant>_<view>.<ext>
+
+Examples:
+  product_A12_v1_model.jpg
+  product_A12_v1_flatlay.jpg
+  product_A12_v2_detail.jpg
+  product_B08_v1_model.webp
+
+GENERAL ASSETS
+--------------
+hero-<descriptor>-<size>.jpg
+  Example: hero-workshop-1600.jpg
+
+collection-<name>-<size>.jpg
+  Example: collection-shawls-900.jpg
+
+sister-<name>.jpg
+  Example: sister-priya.jpg
+
+about-<descriptor>.jpg
+  Example: about-grandmother.jpg
+
+═══════════════════════════════════════
+PRINT SPECIFICATIONS (if needed)
+═══════════════════════════════════════
+
+BUSINESS CARDS
+--------------
+Size: 3.5" x 2" (standard US)
+Paper: Cream uncoated stock
+Print: Deep Indigo ink
+Minimum text: 8pt
+
+HANG TAGS / LABELS
+------------------
+Logo: Deep Indigo on cream/natural paper
+Include: Product name, size, care instructions
+Material: Recycled paper with cotton string
+
+PACKAGING
+---------
+Colors: Natural/cream with indigo accents
+Material: Recycled cardboard, paper tape
+Include: Care card, thank you note
+
+═══════════════════════════════════════
+CONTACT
+═══════════════════════════════════════
+
+For brand guidelines questions:
+hello@raniscalifornia.com
+
+Last Updated: 2025
+Version: 1.0
