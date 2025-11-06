@@ -1,0 +1,211 @@
+[
+  {
+    "id": "A12",
+    "sku": "RAN-A12-IND",
+    "title": "Indigo Block-Print Shawl",
+    "description": "Hand-loomed cotton shawl with traditional Gujarati block-print motifs. Natural indigo dye fades beautifully over time, developing a unique patina. Lightweight enough for layering, substantial enough to anchor an outfit. Each piece varies slightly due to the handcraft process.",
+    "price": 185,
+    "currency": "USD",
+    "material": "100% organic cotton, natural indigo dye",
+    "careInstructions": "Hand wash cold separately. Line dry in shade. Iron on medium heat if needed.",
+    "collection": "shawls",
+    "availableColors": [
+      { "name": "Indigo", "hex": "#233247" },
+      { "name": "Cream", "hex": "#F7F5F1" }
+    ],
+    "sizes": ["One Size"],
+    "madeToMeasure": false,
+    "leadTimeDays": 5,
+    "images": [
+      {
+        "filename": "product_A12_v1_model.jpg",
+        "alt": "Model wearing indigo block-print shawl draped over shoulders",
+        "view": "model"
+      },
+      {
+        "filename": "product_A12_v1_flatlay.jpg",
+        "alt": "Indigo block-print shawl laid flat showing full pattern",
+        "view": "flatlay"
+      },
+      {
+        "filename": "product_A12_v1_detail.jpg",
+        "alt": "Close-up detail of block-print pattern and hand-rolled edge",
+        "view": "detail"
+      }
+    ]
+  },
+  {
+    "id": "B08",
+    "sku": "RAN-B08-OLV",
+    "title": "Reversible Linen Jacket",
+    "description": "Tailored jacket with invisible seams—wear it indigo or olive. Cut with dropped shoulders and a relaxed fit that works over everything from tees to kurtas. Hand-stitched lapel and pockets. This piece takes 10 days to make because every seam is finished twice.",
+    "price": 420,
+    "currency": "USD",
+    "material": "European linen, coconut shell buttons",
+    "careInstructions": "Dry clean or hand wash cold. Reshape while damp and line dry. Wrinkles are part of linen's character.",
+    "collection": "jackets",
+    "availableColors": [
+      { "name": "Indigo/Olive", "hex": "#233247" }
+    ],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "madeToMeasure": true,
+    "leadTimeDays": 10,
+    "images": [
+      {
+        "filename": "product_B08_v1_model.jpg",
+        "alt": "Model wearing reversible linen jacket in indigo side",
+        "view": "model"
+      },
+      {
+        "filename": "product_B08_v2_model.jpg",
+        "alt": "Model wearing reversible linen jacket in olive side",
+        "view": "model_reverse"
+      },
+      {
+        "filename": "product_B08_v1_detail.jpg",
+        "alt": "Detail of invisible seam construction and coconut button",
+        "view": "detail"
+      }
+    ]
+  },
+  {
+    "id": "C15",
+    "sku": "RAN-C15-NAT",
+    "title": "Wide-Leg Cotton Trousers",
+    "description": "High-waisted trousers with a palazzo silhouette. Hand-loomed cotton from a family mill in Tamil Nadu. Deep pockets (actually usable), covered elastic waist, slightly cropped to show your shoes. Available in standard sizes or made-to-measure for your exact inseam and rise.",
+    "price": 210,
+    "currency": "USD",
+    "material": "Hand-loomed cotton, natural dye",
+    "careInstructions": "Machine wash cold on gentle. Tumble dry low or line dry. May shrink slightly—we account for this in sizing.",
+    "collection": "trousers",
+    "availableColors": [
+      { "name": "Natural", "hex": "#F7F5F1" },
+      { "name": "Olive", "hex": "#6B8A72" },
+      { "name": "Charcoal", "hex": "#2B2B2B" }
+    ],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "madeToMeasure": true,
+    "leadTimeDays": 7,
+    "images": [
+      {
+        "filename": "product_C15_v1_model.jpg",
+        "alt": "Model wearing wide-leg cotton trousers in natural color",
+        "view": "model"
+      },
+      {
+        "filename": "product_C15_v1_flatlay.jpg",
+        "alt": "Wide-leg cotton trousers laid flat showing silhouette",
+        "view": "flatlay"
+      },
+      {
+        "filename": "product_C15_v1_detail.jpg",
+        "alt": "Close-up of deep pocket and elastic waistband detail",
+        "view": "detail"
+      }
+    ]
+  },
+  {
+    "id": "D22",
+    "sku": "RAN-D22-MAR",
+    "title": "Marigold Silk Wrap Shawl",
+    "description": "Raw silk shawl dyed with marigold flowers—the same calendula Rani grew in her courtyard. Long enough to wrap twice or drape asymmetrically. Edges are hand-fringed. The color shifts depending on light: burnt orange in sun, deep amber indoors. Limited run of 12 pieces.",
+    "price": 265,
+    "currency": "USD",
+    "material": "Raw silk, botanical marigold dye",
+    "careInstructions": "Dry clean only. Store away from direct sunlight to preserve color.",
+    "collection": "limited",
+    "availableColors": [
+      { "name": "Marigold", "hex": "#E48B1F" }
+    ],
+    "sizes": ["One Size"],
+    "madeToMeasure": false,
+    "leadTimeDays": 3,
+    "images": [
+      {
+        "filename": "product_D22_v1_model.jpg",
+        "alt": "Model wearing marigold silk wrap shawl in natural sunlight",
+        "view": "model"
+      },
+      {
+        "filename": "product_D22_v1_flatlay.jpg",
+        "alt": "Marigold silk shawl laid flat showing hand-fringed edges",
+        "view": "flatlay"
+      },
+      {
+        "filename": "product_D22_v1_detail.jpg",
+        "alt": "Detail of silk texture and natural dye variation",
+        "view": "detail"
+      }
+    ]
+  },
+  {
+    "id": "E09",
+    "sku": "RAN-E09-IND",
+    "title": "Quilted Wool Jacket",
+    "description": "Structured jacket with traditional kantha quilting—tiny running stitches that take 40 hours per garment. Made from organic wool with cotton lining. Stand collar, snap closures hidden under a placket, two chest pockets. Fits close through shoulders, relaxed through body. A winter piece you'll keep for decades.",
+    "price": 580,
+    "currency": "USD",
+    "material": "Organic wool outer, cotton voile lining, kantha hand-quilting",
+    "careInstructions": "Dry clean only. Store with cedar or lavender to prevent moths.",
+    "collection": "jackets",
+    "availableColors": [
+      { "name": "Indigo", "hex": "#233247" },
+      { "name": "Charcoal", "hex": "#2B2B2B" }
+    ],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "madeToMeasure": true,
+    "leadTimeDays": 35,
+    "images": [
+      {
+        "filename": "product_E09_v1_model.jpg",
+        "alt": "Model wearing quilted wool jacket with stand collar",
+        "view": "model"
+      },
+      {
+        "filename": "product_E09_v1_detail.jpg",
+        "alt": "Close-up of kantha quilting stitches and texture",
+        "view": "detail"
+      },
+      {
+        "filename": "product_E09_v2_detail.jpg",
+        "alt": "Detail of hidden snap closures and chest pocket",
+        "view": "detail_pocket"
+      }
+    ]
+  },
+  {
+    "id": "F31",
+    "sku": "RAN-F31-CRM",
+    "title": "Embroidered Linen Trousers",
+    "description": "Straight-leg trousers with hand-embroidered cuffs—a nod to traditional pajama detailing. Made from stone-washed linen that's soft from the first wear. Adjustable drawstring waist, side seam pockets, wide enough to move but tailored enough to tuck in a shirt. The embroidery motif varies slightly; we can send photos of current stock.",
+    "price": 295,
+    "currency": "USD",
+    "material": "Stone-washed linen, cotton embroidery thread",
+    "careInstructions": "Machine wash cold. Hang dry or tumble dry low. Press embroidered areas on reverse side.",
+    "collection": "trousers",
+    "availableColors": [
+      { "name": "Cream", "hex": "#F7F5F1" },
+      { "name": "Olive", "hex": "#6B8A72" }
+    ],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "madeToMeasure": true,
+    "leadTimeDays": 12,
+    "images": [
+      {
+        "filename": "product_F31_v1_model.jpg",
+        "alt": "Model wearing embroidered linen trousers in cream",
+        "view": "model"
+      },
+      {
+        "filename": "product_F31_v1_detail.jpg",
+        "alt": "Close-up of hand-embroidered cuff detail",
+        "view": "detail"
+      },
+      {
+        "filename": "product_F31_v1_flatlay.jpg",
+        "alt": "Embroidered linen trousers laid flat showing straight-leg cut",
+        "view": "flatlay"
+      }
+    ]
+  }
+]
