@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Mapper - Rani's California Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #F7F5F1;
+            --color-indigo: #233247;
+            --color-marigold: #E48B1F;
+            --color-olive: #6B8A72;
+            --color-charcoal: #2B2B2B;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-cream);
+            color: var(--color-charcoal);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--color-indigo);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--color-olive);
+            margin-bottom: 2rem;
+        }
+
+        .upload-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 2px dashed var(--color-indigo);
+        }
+
+        .upload-section.active {
+            border-color: var(--color-marigold);
+            background-color: rgba(228, 139, 31, 0.05);
+        }
+
+        .file-input-wrapper {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .file-input-wrapper input {
+            display: none;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--color-indigo);
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .file-input-label:hover {
+            background-color: var(--color-charcoal);
+        }
+
+        .instructions {
+            background-color: rgba(107, 138, 114, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--color-olive);
+        }
+
+        .instructions h2 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-indigo);
+        }
+
+        .instructions code {
+            background-color: rgba(35, 50, 71, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+
+        .mapping-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-map-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-cream);
+        }
+
+        .product-id {
+            font-weight: 700;
+            color: var(--color-indigo);
+            font-size: 1.125rem;
+        }
+
+        .product-title {
+            font-size: 0.875rem;
+            color: var(--color-olive);
+            margin-top: 0.25rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-complete {
+            background-color: rgba(107, 138, 114, 0.2);
+            color: var(--color-olive);
+        }
+
+        .status-partial {
+            background-color: rgba(228, 139, 31, 0.2);
+            color: var(--color-marigold);
+        }
+
+        .status-missing {
+            background-color: rgba(211, 47, 47, 0.2);
+            color: #d32f2f;
+        }
+
+        .image-slots {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .image-slot {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 0.75rem;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: var(--color-cream);
+            border-radius: 4px;
+        }
+
+        .image-preview {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            background-color: rgba(35, 50, 71, 0.05);
+            border: 2px solid transparent;
+        }
+
+        .image-preview.mapped {
+            border-color: var(--color-olive);
+        }
+
+        .slot-info {
+            flex: 1;
+        }
+
+        .slot-label {
+            font-size: 0.75rem;
+            color: var(--color-olive);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .slot-filename {
+            font-size: 0.875rem;
+            color: var(--color-charcoal);
+            margin-top: 0.25rem;
+            font-family: 'Monaco', monospace;
+        }
+
+        .slot-select {
+            padding: 0.5rem;
+            border: 1px solid rgba(35, 50, 71, 0.2);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            background-color: white;
+        }
+
+        .unmapped-images {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .unmapped-images h2 {
+            color: var(--color-indigo);
+            margin-bottom: 1rem;
+        }
+
+        .unmapped-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .unmapped-image {
+            cursor: grab;
+            transition: transform 0.2s;
+        }
+
+        .unmapped-image:hover {
+            transform: scale(1.05);
+        }
+
+        .unmapped-image.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+        }
+
+        .unmapped-image img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 2px solid transparent;
+        }
+
+        .unmapped-image:hover img {
+            border-color: var(--color-marigold);
+        }
+
+        .unmapped-image p {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            color: var(--color-charcoal);
+            word-break: break-all;
+        }
+
+        .drop-zone {
+            border: 2px dashed rgba(35, 50, 71, 0.2);
+            border-radius: 4px;
+            padding: 0.5rem;
+            text-align: center;
+            color: var(--color-olive);
+            font-size: 0.875rem;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drop-zone.over {
+            border-color: var(--color-marigold);
+            background-color: rgba(228, 139, 31, 0.1);
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--color-indigo);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-charcoal);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-olive);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-indigo);
+            font-family: var(--font-heading);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-olive);
+            margin-top: 0.25rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .alert-success {
+            background-color: rgba(107, 138, 114, 0.2);
+            color: var(--color-olive);
+        }
+
+        .alert-warning {
+            background-color: rgba(228, 139, 31, 0.2);
+            color: #B86F15;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Mapper</h1>
+            <p class="subtitle">Map uploaded images to your product catalog</p>
+        </header>
+
+        <div class="instructions">
+            <h2>Expected Filename Format</h2>
+            <p>Images should follow the pattern: <code>product_&lt;ID&gt;_&lt;variant&gt;_&lt;view&gt;.jpg</code></p>
+            <p style="margin-top: 0.5rem;">Examples: <code>product_A12_v1_model.jpg</code>, <code>product_B08_v1_flatlay.jpg</code>, <code>product_C15_v2_detail.jpg</code></p>
+        </div>
+
+        <div class="upload-section" id="dropZone">
+            <div class="file-input-wrapper">
+                <input type="file" id="fileInput" multiple accept="image/*">
+                <label for="fileInput" class="file-input-label">
+                    📁 Choose Images or Drop Here
+                </label>
+                <p style="margin-top: 1rem; color: var(--color-olive);">
+                    Select multiple images or drag & drop a folder
+                </p>
+            </div>
+        </div>
+
+        <div id="stats" class="stats" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-number" id="totalImages">0</div>
+                <div class="stat-label">Total Images</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="autoMapped">0</div>
+                <div class="stat-label">Auto-Mapped</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="needsMapping">0</div>
+                <div class="stat-label">Needs Mapping</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="unmapped">0</div>
+                <div class="stat-label">Unmapped</div>
+            </div>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <div class="actions" id="actions" style="display: none;">
+            <button class="btn btn-primary" onclick="generateCSV()">📄 Download CSV Mapping</button>
+            <button class="btn btn-secondary" onclick="generateJSON()">💾 Download JSON</button>
+            <button class="btn btn-secondary" onclick="reset()">🔄 Reset</button>
+        </div>
+
+        <div id="unmappedSection" class="unmapped-images" style="display: none;">
+            <h2>Unmapped Images <span id="unmappedCount"></span></h2>
+            <p style="color: var(--color-olive); margin-bottom: 1rem;">
+                Drag these images to product slots below, or manually map using dropdowns
+            </p>
+            <div id="unmappedGrid" class="unmapped-grid"></div>
+        </div>
+
+        <div id="mappingGrid" class="mapping-grid"></div>
+    </div>
+
+    <script>
+        let products = [];
+        let uploadedImages = [];
+        let imageMapping = {};
+
+        // Load products
+        fetch('products.json')
+            .then(res => res.json())
+            .then(data => {
+                products = data;
+                initializeMappingData();
+            })
+            .catch(err => console.error('Failed to load products:', err));
+
+        function initializeMappingData() {
+            products.forEach(product => {
+                imageMapping[product.id] = {
+                    productId: product.id,
+                    title: product.title,
+                    images: product.images.map(img => ({ ...img, file: null, mapped: false }))
+                };
+            });
+        }
+
+        // File upload handling
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('active');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('active');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('active');
+            const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            uploadedImages = files.map(file => ({
+                file,
+                name: file.name,
+                url: URL.createObjectURL(file),
+                mapped: false
+            }));
+
+            autoMapImages();
+            renderUI();
+            showAlert('success', `Loaded ${files.length} images. ${document.getElementById('autoMapped').textContent} auto-mapped.`);
+        }
+
+        function autoMapImages() {
+            const pattern = /product_([A-Z0-9]+)_v(\d+)_(\w+)\.(jpg|png|webp)/i;
+
+            uploadedImages.forEach(img => {
+                const match = img.name.match(pattern);
+                if (match) {
+                    const [_, productId, variant, view] = match;
+                    if (imageMapping[productId]) {
+                        // Find matching image slot by view type
+                        const slot = imageMapping[productId].images.find(
+                            s => s.view === view && !s.mapped
+                        );
+                        if (slot) {
+                            slot.file = img.file;
+                            slot.url = img.url;
+                            slot.mapped = true;
+                            img.mapped = true;
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderUI() {
+            updateStats();
+            renderMappingGrid();
+            renderUnmappedImages();
+            document.getElementById('stats').style.display = 'grid';
+            document.getElementById('actions').style.display = 'flex';
+        }
+
+        function updateStats() {
+            const total = uploadedImages.length;
+            const mapped = uploadedImages.filter(img => img.mapped).length;
+            const unmapped = total - mapped;
+
+            let needsMapping = 0;
+            Object.values(imageMapping).forEach(product => {
+                const mappedCount = product.images.filter(img => img.mapped).length;
+                if (mappedCount > 0 && mappedCount < product.images.length) {
+                    needsMapping++;
+                }
+            });
+
+            document.getElementById('totalImages').textContent = total;
+            document.getElementById('autoMapped').textContent = mapped;
+            document.getElementById('needsMapping').textContent = needsMapping;
+            document.getElementById('unmapped').textContent = unmapped;
+        }
+
+        function renderMappingGrid() {
+            const grid = document.getElementById('mappingGrid');
+            grid.innerHTML = Object.values(imageMapping).map(product => {
+                const mappedCount = product.images.filter(img => img.mapped).length;
+                const totalCount = product.images.length;
+                let status = 'missing';
+                if (mappedCount === totalCount) status = 'complete';
+                else if (mappedCount > 0) status = 'partial';
+
+                return `
+                    <div class="product-map-card">
+                        <div class="product-header">
+                            <div>
+                                <div class="product-id">${product.productId}</div>
+                                <div class="product-title">${product.title}</div>
+                            </div>
+                            <div class="status-badge status-${status}">
+                                ${mappedCount}/${totalCount}
+                            </div>
+                        </div>
+                        <div class="image-slots">
+                            ${product.images.map((img, idx) => `
+                                <div class="image-slot" data-product="${product.productId}" data-slot="${idx}">
+                                    ${img.mapped ?
+                                        `<img src="${img.url}" class="image-preview mapped" alt="${img.view}">` :
+                                        `<div class="image-preview"></div>`
+                                    }
+                                    <div class="slot-info">
+                                        <div class="slot-label">${img.view}</div>
+                                        <div class="slot-filename">${img.filename}</div>
+                                    </div>
+                                    <select class="slot-select" onchange="manualMap('${product.productId}', ${idx}, this.value)">
+                                        <option value="">Select image...</option>
+                                        ${uploadedImages.map((uimg, uidx) => `
+                                            <option value="${uidx}" ${img.url === uimg.url ? 'selected' : ''}>
+                                                ${uimg.name}
+                                            </option>
+                                        `).join('')}
+                                    </select>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderUnmappedImages() {
+            const unmapped = uploadedImages.filter(img => !img.mapped);
+            const section = document.getElementById('unmappedSection');
+            const grid = document.getElementById('unmappedGrid');
+            const count = document.getElementById('unmappedCount');
+
+            if (unmapped.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+
+            section.style.display = 'block';
+            count.textContent = `(${unmapped.length})`;
+
+            grid.innerHTML = unmapped.map((img, idx) => `
+                <div class="unmapped-image" draggable="true" data-index="${uploadedImages.indexOf(img)}">
+                    <img src="${img.url}" alt="${img.name}">
+                    <p>${img.name}</p>
+                </div>
+            `).join('');
+
+            // Add drag handlers
+            grid.querySelectorAll('.unmapped-image').forEach(el => {
+                el.addEventListener('dragstart', handleDragStart);
+            });
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.setData('imageIndex', e.target.closest('.unmapped-image').dataset.index);
+            e.target.classList.add('dragging');
+        }
+
+        function manualMap(productId, slotIndex, imageIndex) {
+            if (!imageIndex) return;
+
+            const img = uploadedImages[imageIndex];
+            const slot = imageMapping[productId].images[slotIndex];
+
+            // Unmap previous if exists
+            if (slot.mapped) {
+                const prevImg = uploadedImages.find(i => i.url === slot.url);
+                if (prevImg) prevImg.mapped = false;
+            }
+
+            slot.file = img.file;
+            slot.url = img.url;
+            slot.mapped = true;
+            img.mapped = true;
+
+            renderUI();
+        }
+
+        function generateCSV() {
+            let csv = 'product_id,title,collection,lead_time_days,made_to_measure,';
+            csv += 'image_1_filename,image_1_alt,image_1_view,';
+            csv += 'image_2_filename,image_2_alt,image_2_view,';
+            csv += 'image_3_filename,image_3_alt,image_3_view\n';
+
+            Object.values(imageMapping).forEach(product => {
+                const p = products.find(pr => pr.id === product.productId);
+                csv += `${product.productId},${product.title},${p.collection},${p.leadTimeDays},${p.madeToMeasure},`;
+
+                for (let i = 0; i < 3; i++) {
+                    const img = product.images[i];
+                    if (img && img.mapped) {
+                        csv += `${img.file.name},${img.alt},${img.view},`;
+                    } else {
+                        csv += ',,,';
+                    }
+                }
+                csv += '\n';
+            });
+
+            downloadFile('image_map.csv', csv, 'text/csv');
+            showAlert('success', 'CSV mapping file downloaded!');
+        }
+
+        function generateJSON() {
+            const output = Object.values(imageMapping).map(product => ({
+                productId: product.productId,
+                title: product.title,
+                images: product.images.filter(img => img.mapped).map(img => ({
+                    filename: img.file.name,
+                    alt: img.alt,
+                    view: img.view
+                }))
+            }));
+
+            downloadFile('image_mapping.json', JSON.stringify(output, null, 2), 'application/json');
+            showAlert('success', 'JSON mapping file downloaded!');
+        }
+
+        function downloadFile(filename, content, type) {
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function showAlert(type, message) {
+            const container = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            container.appendChild(alert);
+            setTimeout(() => alert.remove(), 5000);
+        }
+
+        function reset() {
+            if (!confirm('Reset all mappings? This cannot be undone.')) return;
+
+            uploadedImages = [];
+            initializeMappingData();
+            document.getElementById('stats').style.display = 'none';
+            document.getElementById('actions').style.display = 'none';
+            document.getElementById('unmappedSection').style.display = 'none';
+            document.getElementById('mappingGrid').innerHTML = '';
+            fileInput.value = '';
+        }
+    </script>
+</body>
+</html>
