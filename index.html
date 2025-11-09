@@ -611,8 +611,8 @@
                 <h3>Newsletter</h3>
                 <p>New collections, pop-up dates, and stories from the workshop. No more than once a month.</p>
 
-                <!-- Mailchimp form - replace action URL with your Mailchimp form endpoint -->
-                <form action="YOUR_MAILCHIMP_FORM_ACTION_URL" method="POST" class="newsletter-signup" novalidate>
+                <!-- Newsletter subscription form -->
+                <form action="/api/newsletter" method="POST" class="newsletter-signup" novalidate>
                     <div class="form-group">
                         <label for="newsletter-email" class="visually-hidden">Email address</label>
                         <input type="email" id="newsletter-email" name="EMAIL" placeholder="Your email address" required aria-required="true">
@@ -805,7 +805,7 @@
                 </svg>
             </button>
 
-            <form id="rsvp-form" action="/api/events/rsvp" method="POST" class="rsvp-form">
+            <form id="rsvp-form" action="/api/events/rsvp" method="POST" class="rsvp-form" novalidate>
                 <h2 id="rsvp-title">RSVP for Event</h2>
                 <p id="rsvp-event-name" class="rsvp-event"></p>
 

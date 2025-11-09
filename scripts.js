@@ -644,20 +644,59 @@
         const formData = new FormData(e.target);
         const submitButton = e.target.querySelector('button[type="submit"]');
 
+        // Build measurements object
+        const measurements = {
+            chest_cm: parseFloat(formData.get('chest')) || null,
+            waist_cm: parseFloat(formData.get('waist')) || null,
+            hip_cm: parseFloat(formData.get('hip')) || null,
+            sleeve_cm: parseFloat(formData.get('sleeve')) || null,
+            length_cm: parseFloat(formData.get('length')) || null
+        };
+
+        // Build items array (for now, single item from form)
+        // TODO: If you have product selection in the form, build items array properly
+        const items = [{
+            product_id: formData.get('product_id') || '00000000-0000-0000-0000-000000000000', // Placeholder - update with actual product selection
+            qty: 1,
+            price_cents_each: 0 // Will be calculated server-side
+        }];
+
+        // Create new FormData with JSON fields
+        const newFormData = new FormData();
+        newFormData.append('name', formData.get('name'));
+        newFormData.append('email', formData.get('email'));
+        newFormData.append('country', formData.get('country'));
+        newFormData.append('garmentType', formData.get('garmentType'));
+        if (formData.get('notes')) {
+            newFormData.append('notes', formData.get('notes'));
+        }
+        newFormData.append('measurements', JSON.stringify(measurements));
+        newFormData.append('items', JSON.stringify(items));
+
+        // Add photo files if any
+        const photoInput = document.getElementById('custom-file');
+        if (photoInput && photoInput.files) {
+            for (let i = 0; i < photoInput.files.length; i++) {
+                newFormData.append('photos', photoInput.files[i]);
+            }
+        }
+
         submitButton.disabled = true;
         submitButton.textContent = 'Submitting...';
 
         try {
-            const response = await fetch(e.target.action, {
+            const response = await fetch('/api/custom-orders', {
                 method: 'POST',
-                body: formData
+                body: newFormData
             });
+
+            const data = await response.json();
 
             if (response.ok) {
                 alert('Thank you! We\'ll send you a detailed measurement guide within 24 hours.');
                 e.target.reset();
             } else {
-                throw new Error('Submission failed');
+                throw new Error(data.message || 'Submission failed');
             }
         } catch (error) {
             alert('Sorry, there was an error submitting your request. Please try again or email us directly at hello@raniscalifornia.com');
@@ -673,21 +712,34 @@
         const formData = new FormData(e.target);
         const submitButton = e.target.querySelector('button[type="submit"]');
 
+        // Build JSON payload
+        const payload = {
+            event_id: formData.get('eventId'),
+            name: formData.get('name'),
+            email: formData.get('email'),
+            guests: parseInt(formData.get('guests') || '1', 10)
+        };
+
         submitButton.disabled = true;
         submitButton.textContent = 'Submitting...';
 
         try {
-            const response = await fetch(e.target.action, {
+            const response = await fetch('/api/events/rsvp', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
             });
+
+            const data = await response.json();
 
             if (response.ok) {
                 alert('RSVP confirmed! Check your email for event details.');
                 closeAllModals();
                 e.target.reset();
             } else {
-                throw new Error('Submission failed');
+                throw new Error(data.message || 'Submission failed');
             }
         } catch (error) {
             alert('Sorry, there was an error with your RSVP. Please try again or email us at hello@raniscalifornia.com');
@@ -710,17 +762,27 @@
         submitButton.textContent = 'Subscribing...';
 
         try {
-            // If using Mailchimp, form will submit naturally
-            // For custom handling:
-            const formData = new FormData(e.target);
-            const response = await fetch(e.target.action, {
+            // Send JSON to API
+            const payload = {
+                email: emailInput.value
+            };
+
+            const response = await fetch('/api/newsletter', {
                 method: 'POST',
-                body: formData,
-                mode: 'no-cors' // Required for Mailchimp
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
             });
 
-            alert('Thank you for subscribing!');
-            e.target.reset();
+            const data = await response.json();
+
+            if (response.ok) {
+                alert('Thank you for subscribing!');
+                e.target.reset();
+            } else {
+                throw new Error(data.message || 'Subscription failed');
+            }
         } catch (error) {
             alert('Thank you for subscribing! Please check your email to confirm.');
             e.target.reset();

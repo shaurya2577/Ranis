@@ -1,0 +1,105 @@
+### Rani's California - API Test Requests
+### Use with VS Code REST Client extension or similar
+
+@baseUrl = http://localhost:5173
+@authToken = YOUR_SUPABASE_ACCESS_TOKEN_HERE
+
+### Health Check
+GET {{baseUrl}}/api/health
+
+### Newsletter Subscription
+POST {{baseUrl}}/api/newsletter
+Content-Type: application/json
+
+{
+  "email": "test@example.com"
+}
+
+### Event RSVP
+POST {{baseUrl}}/api/events/rsvp
+Content-Type: application/json
+
+{
+  "event_id": "sf-holiday",
+  "name": "John Doe",
+  "email": "john@example.com",
+  "guests": 2
+}
+
+### Get Products
+GET {{baseUrl}}/api/products
+
+### Get Events
+GET {{baseUrl}}/api/events
+
+### Create Custom Order (multipart/form-data)
+### Note: This is a simplified example. In practice, use a tool that supports file uploads.
+POST {{baseUrl}}/api/custom-orders
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+John Doe
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="email"
+
+john@example.com
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="country"
+
+USA
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="garmentType"
+
+jacket
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="measurements"
+
+{"chest_cm":100,"waist_cm":85,"hip_cm":95,"sleeve_cm":60,"length_cm":70}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="items"
+
+[{"product_id":"00000000-0000-0000-0000-000000000000","qty":1,"price_cents_each":42000}]
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="notes"
+
+Please make it slightly loose fitting.
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Get Cart (requires authentication)
+GET {{baseUrl}}/api/cart
+Authorization: Bearer {{authToken}}
+
+### Update Cart (requires authentication)
+POST {{baseUrl}}/api/cart
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "items": [
+    {
+      "product_id": "00000000-0000-0000-0000-000000000000",
+      "qty": 2,
+      "price_cents_each": 18500,
+      "color": "Indigo",
+      "size": "M"
+    }
+  ]
+}
+
+### Create Payment Intent (requires Stripe configuration)
+POST {{baseUrl}}/api/checkout/create-intent
+Content-Type: application/json
+
+{
+  "items": [
+    {
+      "product_id": "00000000-0000-0000-0000-000000000000",
+      "qty": 1,
+      "price_cents_each": 18500
+    }
+  ],
+  "currency": "usd"
+}
+
